@@ -1,6 +1,7 @@
-import { NotFound } from 'components/pages/NotFound'
 import { getHomePageTitle, getSettings } from 'lib/sanity.client'
+
 import { GetStaticProps } from 'next'
+import { NotFound } from 'components/pages/NotFound'
 import { SettingsPayload } from 'types'
 
 interface PageProps {

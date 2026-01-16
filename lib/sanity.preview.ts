@@ -23,7 +23,7 @@ export function usePreview<T = any>(
   params?: Record<string, any>
 ): T {
   // useLiveQuery expects: initialData, query, params
-  const [data] = useLiveQuery<T>(params?.initialData, query, params)
+  const [data] = useLiveQuery<T>(params?.initialData ?? null, query, params)
   return data
 }
 

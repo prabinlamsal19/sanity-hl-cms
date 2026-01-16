@@ -15,6 +15,9 @@ export interface HomePageProps {
 export function HomePage({ page, settings, preview }: HomePageProps) {
   const { title, landingSection, contentSection, showcaseSection } = page ?? {}
 
+
+
+
   return (
     <>
       <SiteMeta
@@ -37,7 +40,7 @@ export function HomePage({ page, settings, preview }: HomePageProps) {
             title: '',
             subtitle: '',
             showcaseContent: {
-              _type: '',
+              _type: 'post',
               slug: '',
               title: '',
             },

@@ -11,7 +11,9 @@ export function ShowcaseSection({ showcaseSection }: ShowcaseSectionProps) {
   const { showcaseImage, title, subtitle, learnMoreButton, showcaseContent } =
     showcaseSection
 
-  const showcaseHref = resolveHref(showcaseContent._type, showcaseContent.slug)
+  const showcaseHref = showcaseContent
+    ? resolveHref(showcaseContent._type, showcaseContent.slug)
+    : undefined
 
   return (
     <section className="relative select-none overflow-hidden">

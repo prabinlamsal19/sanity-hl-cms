@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
+
 import type { PageConfig } from 'next/types'
 
 // res.setPreviewData only exists in the nodejs runtime, setting the config here allows changing the global runtime

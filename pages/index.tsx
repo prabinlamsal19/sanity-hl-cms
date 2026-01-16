@@ -1,10 +1,10 @@
-import { PreviewSuspense } from '@sanity/preview-kit'
+import { HomePagePayload, SettingsPayload } from 'types'
+import { Suspense, lazy } from 'react'
+import { getHomePage, getSettings } from 'lib/sanity.client'
+
+import { GetStaticProps } from 'next'
 import { HomePage } from 'components/pages/home/HomePage'
 import { PreviewWrapper } from 'components/preview/PreviewWrapper'
-import { getHomePage, getSettings } from 'lib/sanity.client'
-import { GetStaticProps } from 'next'
-import { lazy } from 'react'
-import { HomePagePayload, SettingsPayload } from 'types'
 
 const HomePagePreview = lazy(
   () => import('components/pages/home/HomePagePreview')
@@ -12,7 +12,7 @@ const HomePagePreview = lazy(
 
 interface PageProps {
   page: HomePagePayload
-  settings: SettingsPayload
+  settings: SettingsPayload | undefined
   preview: boolean
   token: string | null
 }
@@ -30,7 +30,7 @@ export default function IndexPage(props: PageProps) {
 
   if (preview) {
     return (
-      <PreviewSuspense
+      <Suspense
         fallback={
           <PreviewWrapper>
             <HomePage page={page} settings={settings} preview={preview} />
@@ -38,7 +38,7 @@ export default function IndexPage(props: PageProps) {
         }
       >
         <HomePagePreview token={token} />
-      </PreviewSuspense>
+      </Suspense>
     )
   }
 
@@ -73,15 +73,20 @@ export const getStaticProps: GetStaticProps<
   const { preview = false, previewData = {} } = ctx
 
   const token = previewData.token
-  const [settings, page = fallbackPage] = await Promise.all([
+  /* eslint-disable prefer-const */
+  let [settings, page] = await Promise.all([
     getSettings({ token }),
     getHomePage({ token }),
   ])
 
+  if (!page) {
+    page = fallbackPage
+  }
+
   return {
     props: {
       page,
-      settings,
+      settings: settings ?? null,
       preview,
       token: previewData.token ?? null,
     },

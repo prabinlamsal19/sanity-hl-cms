@@ -4,7 +4,9 @@ import { PreviewBanner } from 'components/preview/PreviewBanner'
 import { SettingsPayload } from 'types'
 
 const fallbackSettings: SettingsPayload = {
-  header: {},
+  header: {
+    menuItems: [],
+  },
   footer: {},
   socials: {},
 }
@@ -17,9 +19,11 @@ export interface LayoutProps {
 
 export default function Layout({
   children,
-  settings = fallbackSettings,
+  settings: _settings,
   preview,
 }: LayoutProps) {
+
+  const settings = _settings ?? fallbackSettings
   return (
     <div className="flex min-h-screen flex-col justify-between bg-white text-black selection:bg-pink-200 selection:text-white">
       {preview && <PreviewBanner />}

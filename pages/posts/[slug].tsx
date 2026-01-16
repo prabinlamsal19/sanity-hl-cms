@@ -1,5 +1,5 @@
-import { PreviewSuspense } from '@sanity/preview-kit'
-import PostPage from 'components/pages/post/PostPage'
+import { PostPayload, SettingsPayload, ShowcaseContent } from 'types'
+import { Suspense, lazy } from 'react'
 import {
   getHomePageTitle,
   getPostBySlug,
@@ -7,10 +7,10 @@ import {
   getPosts,
   getSettings,
 } from 'lib/sanity.client'
-import { resolveHref } from 'lib/sanity.links'
+
 import { GetStaticProps } from 'next'
-import { lazy } from 'react'
-import { PostPayload, SettingsPayload, ShowcaseContent } from 'types'
+import PostPage from 'components/pages/post/PostPage'
+import { resolveHref } from 'lib/sanity.links'
 
 const PreviewPostPage = lazy(() => import('components/pages/post/PostPreview'))
 
@@ -36,7 +36,7 @@ export default function ProjectSlugRoute(props: PageProps) {
 
   if (preview) {
     return (
-      <PreviewSuspense
+      <Suspense
         fallback={
           <PostPage
             post={post}
@@ -54,7 +54,7 @@ export default function ProjectSlugRoute(props: PageProps) {
           settings={settings}
           homePageTitle={homePageTitle}
         />
-      </PreviewSuspense>
+      </Suspense>
     )
   }
 
