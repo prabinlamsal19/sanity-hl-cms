@@ -1,15 +1,16 @@
-import { SiteMeta } from 'components/global/SiteMeta'
-import { ContentListCard } from 'components/pages/content/ContentListCard'
-import { Header } from 'components/shared/Header'
-import Layout from 'components/shared/Layout'
-import { resolveHref } from 'lib/sanity.links'
-import Link from 'next/link'
 import type {
   PostListPagePayload,
   ProjectListPagePayload,
   SettingsPayload,
   ShowcaseContent,
 } from 'types'
+
+import { ContentListCard } from 'components/pages/content/ContentListCard'
+import { Header } from 'components/shared/Header'
+import Layout from 'components/shared/Layout'
+import Link from 'next/link'
+import { SiteMeta } from 'components/global/SiteMeta'
+import { resolveHref } from 'lib/sanity.links'
 
 export interface ContentListPageProps {
   contentList: ShowcaseContent[]
@@ -27,7 +28,7 @@ export function ContentListPage({
   preview,
 }: ContentListPageProps) {
   const { pageTitle = 'Content', subtitle = 'Check out my content!' } =
-    contentListHeader
+    contentListHeader ?? {}
 
   return (
     <>

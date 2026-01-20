@@ -1,7 +1,8 @@
-import { SiteMeta } from 'components/global/SiteMeta'
 import { getHomePageTitle, getSettings } from 'lib/sanity.client'
+
 import { GetStaticProps } from 'next'
 import { SettingsPayload } from 'types'
+import { SiteMeta } from 'components/global/SiteMeta'
 
 interface PageProps {
   settings: SettingsPayload
@@ -29,7 +30,7 @@ export default function ResumePage(props: PageProps) {
         title="Resume"
       />
 
-      <iframe src={settings.resume} className="h-full w-full" />
+      <iframe src={settings?.resume} className="h-full w-full" />
     </>
   )
 }
