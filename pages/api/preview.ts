@@ -1,3 +1,4 @@
+import type { NextApiRequest, NextApiResponse } from 'next'
 import {
   apiVersion,
   dataset,
@@ -5,15 +6,14 @@ import {
   projectId,
   useCdn,
 } from 'lib/sanity.api'
-import { resolveHref } from 'lib/sanity.links'
-import type { NextApiRequest, NextApiResponse } from 'next'
-import type { PageConfig } from 'next/types'
+
 import { createClient } from 'next-sanity'
 import { getSecret } from 'plugins/productionUrl/utils'
+import { resolveHref } from 'lib/sanity.links'
 
 // res.setPreviewData only exists in the nodejs runtime, setting the config here allows changing the global runtime
 // option in next.config.mjs without breaking preview mode
-export const config: PageConfig = { runtime: 'nodejs' }
+export const config = { runtime: 'nodejs' }
 
 function redirectToPreview(
   res: NextApiResponse<string | void>,
