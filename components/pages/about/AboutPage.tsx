@@ -1,9 +1,9 @@
-import { SiteMeta } from 'components/global/SiteMeta'
-import { Header } from 'components/shared/Header'
 import type { AboutPagePayload, SettingsPayload } from 'types'
 
 import { CustomPortableText } from '../../shared/CustomPortableText'
+import { Header } from 'components/shared/Header'
 import Layout from '../../shared/Layout'
+import { SiteMeta } from 'components/global/SiteMeta'
 
 export interface AboutPageProps {
   aboutPage: AboutPagePayload | undefined
@@ -22,8 +22,8 @@ export default function AboutPage({
     pageTitle = 'About Me',
     subtitle = 'Learn more about me!',
     excerpt = 'Learn more about me!',
-    content,
-  } = aboutPage
+    content = [],
+  } = aboutPage ?? {}
 
   return (
     <>

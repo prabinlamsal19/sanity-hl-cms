@@ -1,7 +1,7 @@
-import { Socials } from 'components/shared/Socials'
-import Link from 'next/link'
 import { FaGithub } from 'react-icons/fa'
+import Link from 'next/link'
 import { SettingsPayload } from 'types'
+import { Socials } from 'components/shared/Socials'
 
 interface FooterProps {
   footer?: SettingsPayload['footer']
@@ -24,7 +24,7 @@ export function Footer({ footer, socials }: FooterProps) {
         <Socials socials={socials} />
         <div className="icons flex justify-center">
           <Link
-            href="https://github.com/kirkwat/portfolio-blog"
+            href="https://github.com/prabinlamsal19"
             target="_blank"
             rel="noopener noreferrer"
             className="w-5 transition-colors duration-200 hover:text-pink-300"
